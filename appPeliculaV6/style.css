@@ -1,0 +1,63 @@
+main {
+    background-color:black;
+  }
+
+h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:whitesmoke;
+    border: 40px;
+    background-origin: padding-box;
+    padding-left: 1%;
+    font-size: 80px;
+}
+
+p {
+    color:lightgoldenrodyellow;
+    padding-left: 1%;
+}
+
+.Barra {
+    background-color:rgb(60, 147, 201);
+    font-family:Tahoma;
+    font-size: 25px;
+    text-align: center;
+    padding-bottom: 25px;
+    padding-top: 25px;
+  }
+
+input {
+    background-color: rgb(239, 233, 226);
+}
+
+::placeholder {
+    color: grey;
+    opacity: 0.4;
+  }
+
+.buttonBuscar {
+    background-color: rgb(27, 45, 147);
+    border-color: rgb(255, 255, 255);
+    font-size: 35px;
+    color: whitesmoke;
+}
+
+.row {
+    padding-left: 10%;
+}
+
+.card {
+    background-color: rgb(255, 238, 85);
+}
+
+:root {
+    --bs-border-width: 0px;
+}
+
+.img-fluid {
+    padding-inline: 1%;
+}
+
+.volverPagina {
+    color:white;
+    background-color: red;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peliculas para Vos</title>
+  <!-- Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <!-- Script principal -->
+  <script src="./js/pelicula.js" defer></script>
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="appPelicula">
+    <h1>{{ movie.title }}</h1>
+    <br>
+    <div class="Pelicula">
+
+      <!-- Imagen de la película -->
+      <img v-if="movie.poster_path" 
+           :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" 
+           :alt="'Poster de ' + movie.title" 
+           class="img-fluid" width="500px">
+      <img v-else 
+           src="https://via.placeholder.com/500x750" 
+           :alt="'Imagen no disponible para ' + movie.title" 
+           class="img-fluid" width="500px">
+      <br><br>
+
+      <!-- Descripción de la película -->
+      <p>{{ movie.overview }}</p>
+      <br>
+
+      <!-- Géneros de la película -->
+      <p v-if="movie.genres && movie.genres.length > 0">
+        {{ movie.genres.map(genre => genre.name).join(", ") }}
+      </p>
+      <p v-else>Sin géneros disponibles</p>
+      <br>
+
+      <!-- Valoración de la película -->
+      <p class="card-text">
+        <strong>Valoración: </strong>
+        {{ movie.averageRating ? movie.averageRating : 'Sin valoración' }}
+      </p>
+
+      <!-- Botón "Agregar a Favoritos" -->
+      <button class="btn btn-success" @click="addMovieToFavorites">
+        <i class="bi bi-star-fill" style="color: yellow;"></i>
+        <strong> Agregar a Favoritos </strong>
+      </button>
+    </div>
+    <br>
+
+    <!-- Botón "Volver" -->
+    <button class="btn btn-danger" @click="volver"><strong>Volver</strong></button>
+    <br><br>
+  </main>
+</body>
+</html>

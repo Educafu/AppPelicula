@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado De Películas</title>
+  <!-- Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <!-- Script principal -->
+  <script src="./js/app.js" defer></script>
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <!-- Barra de búsqueda -->
+    <div class="Barra text-center">
+      <h1>Las Mejores Películas para Vos</h1>
+      <input type="text" v-model="inputBusqueda" class="form-control mb-3" placeholder="Buscar...">
+      <button @click="buscar" class="btn btn-primary">Buscar</button>
+    </div>
+
+    <!-- Resultados de la búsqueda -->
+    <div v-if="resultadosBusqueda.length > 0" class="row resultados">
+      <div v-for="(pelicula, index) in resultadosBusqueda" :key="pelicula.id" class="col-md-2 card p-4 m-1">
+        <img v-if="pelicula.poster_path" 
+             :src="'https://image.tmdb.org/t/p/w500/' + pelicula.poster_path" 
+             :alt="'Poster de ' + pelicula.title" 
+             class="img-fluid">
+        <img v-else 
+             src="https://via.placeholder.com/150" 
+             :alt="'No disponible para ' + pelicula.title" 
+             class="img-fluid">
+        <button @click="getDetalle(pelicula.id)" class="btn btn-sm btn-secondary mt-2">Detalle</button>
+        <h5 class="mt-2">{{ pelicula.title }}</h5>
+      </div>
+    </div>
+
+    <!-- Contenedor de resultados por defecto -->
+    <div v-else class="row">
+      <div v-for="(pelicula, index) in peliculas" :key="pelicula.id" class="col-md-2 card p-4 m-1">
+        <div @click="getDetalle(pelicula.id)">
+          <img v-if="pelicula.poster_path" 
+               :src="'https://image.tmdb.org/t/p/w500/' + pelicula.poster_path" 
+               :alt="'Poster de ' + pelicula.title" 
+               class="img-fluid">
+          <img v-else 
+               src="https://via.placeholder.com/150" 
+               :alt="'No disponible para ' + pelicula.title" 
+               class="img-fluid">
+        </div>
+        <button @click="getDetalle(pelicula.id)" class="btn btn-sm btn-secondary mt-2">{{ pelicula.title }}</button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
